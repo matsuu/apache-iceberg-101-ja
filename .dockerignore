@@ -1,5 +1,5 @@
 .git
 .gitignore
-spark/Dockerfile
+spark-iceberg/Dockerfile
 README.md
 docker-compose.yml
