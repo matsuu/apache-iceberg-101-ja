@@ -1,16 +1,11 @@
-FROM azul/zulu-openjdk:17 as builder
+FROM gradle:jdk21-jammy as builder
 
 COPY . /app/
 WORKDIR /app/
 
-RUN ["./gradlew", "build", "shadowJar"]
+RUN ["gradle", "build", "shadowJar"]
 
-FROM azul/zulu-openjdk:17-jre-headless
-
-RUN \
-    set -xeu && \
-    groupadd iceberg --gid 1000 && \
-    useradd iceberg --uid 1000 --gid 1000 --create-home
+FROM gcr.io/distroless/java21-debian12
 
 COPY --from=builder --chown=iceberg:iceberg /app/build/libs/iceberg-rest-catalog-all.jar /usr/lib/iceberg-rest/iceberg-rest-catalog-all.jar
 
@@ -21,7 +16,7 @@ ENV CATALOG_JDBC_PASSWORD=password
 ENV REST_PORT=8181
 
 EXPOSE $REST_PORT
-USER iceberg:iceberg
+USER nonroot:nonroot
 ENV LANG en_US.UTF-8
 WORKDIR /usr/lib/iceberg-rest
-CMD ["java", "-jar", "iceberg-rest-catalog-all.jar"]
+CMD ["iceberg-rest-catalog-all.jar"]
