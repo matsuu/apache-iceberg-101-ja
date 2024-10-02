@@ -1,6 +1,4 @@
 ---
-version: "3"
-
 services:
   spark-iceberg:
     container_name: spark-iceberg

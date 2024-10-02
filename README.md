@@ -4,7 +4,7 @@
 ## ハンズオン概要
 これからApache Icebergを学びたい人向けの実践的なハンズオンです。コンテナが動く端末が1台あれば始められます。
 ```shell
-docker-compose up --build
+docker compose up --build
 ```
 
 以下のようなJupyterベースのコンテンツを通じてIcebergの機能と仕組みが学べます。  
@@ -38,7 +38,7 @@ Icebergの実験に必要なコンポーネントがdocker-compose.ymlに纏ま�
   
 **【注意】この環境はあくまでも実験用です。本番向けには非機能面を考慮した適切な設計の検討が必要です**
   
-docker-composeには主に以下のコンポーネントが含まれています。
+docker composeには主に以下のコンポーネントが含まれています。
 
 - [Apache Spark](https://spark.apache.org/)
     - Icebergを試すクエリエンジンとして利用します
@@ -54,9 +54,9 @@ docker-composeには主に以下のコンポーネントが含まれています
 ## 環境構築
 macとwindowsのwsl(Ubuntu 20.04)で動作を確認しています。
 ### コンテナ立ち上げ
-#### docker-compose
+#### docker compose
 ```shell
-docker-compose up --build
+docker compose up --build
 ```
 
 ※`docker-compose.yml`内にAWSのクレデンシャルを指定するように見える箇所がありますが、これはminioのために必要な設定で、編集は不要です(本ハンズオンではS3を使用しません)
