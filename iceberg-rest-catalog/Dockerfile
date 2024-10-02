@@ -10,7 +10,7 @@ FROM gcr.io/distroless/java21-debian12
 COPY --from=builder --chown=iceberg:iceberg /app/build/libs/iceberg-rest-catalog-all.jar /usr/lib/iceberg-rest/iceberg-rest-catalog-all.jar
 
 ENV CATALOG_CATALOG__IMPL=org.apache.iceberg.jdbc.JdbcCatalog
-ENV CATALOG_URI=jdbc:sqlite:file:/tmp/iceberg_rest_mode=memory
+ENV CATALOG_URI=jdbc:sqlite:file:/tmp/iceberg_rest?mode=memory
 ENV CATALOG_JDBC_USER=user
 ENV CATALOG_JDBC_PASSWORD=password
 ENV REST_PORT=8181
